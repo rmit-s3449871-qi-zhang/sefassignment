@@ -1,29 +1,34 @@
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 
-public class Robot extends JFrame implements MouseListener
+public class Robot extends JFrame implements MouseListener, KeyListener
 {
 	JPanel p = new JPanel();
 	JButton[][] button;
-//	private int count = 0;
-//	private int sign = 0;
-	
+	JMenuItem robot, source, destination;
+	JPopupMenu popup;
+
 	public Robot()
 	{
-//		super("Robot");
-		this.setSize(600,600);
-		this.setResizable(false);
-//		this.setResizable(true);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null);
-		
+		setSize(600,600);
+		setResizable(false);
+		setTitle("Robot Simulation");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		//Ensure that this application listens when the user click the mouse or press a key
+		this.addMouseListener(this);
+		this.addKeyListener(this);
 		p.setLayout(new GridLayout(10,10));
 		button = new JButton[10][10];
 		for(int i = 0; i <10; i++)
@@ -41,6 +46,7 @@ public class Robot extends JFrame implements MouseListener
 		this.setVisible(true);
 	}
 	
+	// left click and right click to change color
 	public void mouseClicked(MouseEvent e)
 	{
 		for(int i = 0; i < 10; i++)
@@ -60,45 +66,58 @@ public class Robot extends JFrame implements MouseListener
 							button[i][j].setBackground(Color.WHITE);
 						}
 					}
-					if(SwingUtilities.isRightMouseButton(e))
+					if(SwingUtilities.isRightMouseButton(e) )
 					{
-						button[i][j].setBackground(Color.BLUE);
+						if(button[i][j].getBackground() == Color.BLACK){
+							button[i][j].setBackground(Color.BLUE);
+						}
 					}
 				}
 			}
 		}
 	}
 	
-
-	
-
 	public static void main(String[] args)
 	{
 		new Robot();
 	}
+	
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+
 		
 	}
-
 	@Override
 	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		
+	}
+
+	
 
 }
