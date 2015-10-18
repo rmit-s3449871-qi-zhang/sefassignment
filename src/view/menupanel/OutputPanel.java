@@ -44,7 +44,6 @@ public class OutputPanel extends JPanel{
 		this.scrollPane = new JScrollPane();
 		this.scrollPane.setPreferredSize(new Dimension(100,150));;
 		this.scrollPane.setViewportView(this.Output);
-//		this.scrollPane.setVerticalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
 		DefaultCaret caret = (DefaultCaret) Output.getCaret();
 		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);

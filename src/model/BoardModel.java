@@ -185,7 +185,7 @@ public class BoardModel {
 		}		
 		return false;
 	}
-	
+
 	public boolean setPosition(int posX, int posY){
 		boolean isAtDestination = false;
 		if((0 <= posX && posX < BoardConstants.BOARD_SIZE_VERTICAL) &&

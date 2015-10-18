@@ -1,10 +1,13 @@
 package view.menupanel;
 
+
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
@@ -12,8 +15,8 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+
 public class InstructionPanel extends JPanel{	
-//	private JPanel commandPanel;
 	
 	private TitledBorder border;
 	private Border blackline;
@@ -36,7 +39,6 @@ public class InstructionPanel extends JPanel{
 		this.add(new JLabel("Robot moves 2 steps to South,"));
 		this.add(new JLabel("pick up source, "));
 		this.add(new JLabel("..."));
-
 		this.setPreferredSize(new Dimension(100,150));
 		
 	}

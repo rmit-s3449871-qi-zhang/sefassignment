@@ -21,16 +21,12 @@ import controller.CommandListener;
 
 public class CommandPanel extends JPanel{
 	
-//	private ArrayList<String> elements = new ArrayList<>();
-//	private String content = "";
-	private Scanner sc = new Scanner(System.in);
-	
 	private TitledBorder border;
 	private Border blackline;
 	private EmptyBorder margin;
 	
 	private JTextField input;
-	
+	private CommandListener cl;
 	private JButton button;
 
 	public CommandPanel(){
@@ -43,9 +39,9 @@ public class CommandPanel extends JPanel{
         this.input = new JTextField();
         input.setPreferredSize(new Dimension(100,30));
         
-        this.button = new JButton("Click"); // click button to program
+        this.button = new JButton("Run"); // click button to program
         // add click button event
-        CommandListener cl = new CommandListener();
+        cl = new CommandListener();
  		cl.setButton(button);
  		button.addActionListener(cl);
  		
@@ -56,15 +52,6 @@ public class CommandPanel extends JPanel{
 
 	}
 	
-	// get all input content and store them to an arraylist
-//	public ArrayList<String> getElements(){
-//		content = sc.next();
-//		String[] part = content.split(",");
-//		for(int i=0;i<part.length;i++){
-//			elements.add(part[i]);
-//		}
-//		return this.elements;
-//	}
 	public JButton getButton(){
 		return this.button;
 	}

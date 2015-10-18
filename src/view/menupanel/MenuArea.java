@@ -4,8 +4,6 @@ import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 
-import model.BoardModel;
-
 public class MenuArea extends JPanel{
 	private InstructionPanel instructionPanel;
 	private CommandPanel commandPanel;
@@ -24,7 +22,6 @@ public class MenuArea extends JPanel{
 		this.outputPanel = new OutputPanel();
 		this.add(outputPanel, BorderLayout.PAGE_END);
 		
-//		BoardModel.getInstance().setMenuArea(this);
 	}
 	
 	public CommandPanel getCommandPanel(){

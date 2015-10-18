@@ -7,7 +7,6 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 
 import model.BoardModel;
-import view.Grid;
 import view.imageitem.ClearImage;
 import view.imageitem.PickedImage;
 import view.imageitem.RobotImage;
@@ -15,44 +14,27 @@ import view.imageitem.RobotImage;
 public class CommandListener implements ActionListener{
 
 	private JButton button;
-	private Grid grid;
-	
 	private int robotPosition[];
-	private int sourcePosition[];
-	private int destinationPostion[];
-	
 	private int pos;
 	
     public void setButton(JButton button){
     	this.button = button;
     }
-    
-   
-    
-    private void printPositions(){
+  
+    private void getPositions(){
     	this.robotPosition = BoardModel.getInstance().getRobotPosition();
-    	this.sourcePosition = BoardModel.getInstance().getSourcePosition();
-    	this.destinationPostion = BoardModel.getInstance().getDestinationPosition();
-    	System.out.println("====================");
-    	System.out.println("ROBOT: " + robotPosition[0] + ", " + robotPosition[1]);
-    	System.out.println("SOURCE: " + sourcePosition[0] + ", " + sourcePosition[1]);
-    	System.out.println("DESTINATION: " + destinationPostion[0] + ", " + destinationPostion[1]);
-    	System.out.println("====================");
     }
     
 	public void actionPerformed(ActionEvent e){
 		if(e.getSource() == button){
-			System.out.println("BEGIN");
 			// get current position of all elements
-			printPositions();
-			
+			getPositions();
 			// extract commands from text field
 			JTextField commandInput = BoardModel.getInstance().getInputArea();
 			// split commands
 			String commands[] = commandInput.getText().split(",");
 			
 			for(int i = 0; i < commands.length; i++){
-				System.out.println(i + " " + commands[i]);
 				if(commands[i].equalsIgnoreCase("p")){
 					pos = i;
 					boolean pickItem = BoardModel.getInstance().pickSource();
@@ -61,19 +43,18 @@ public class CommandListener implements ActionListener{
 						// Change image on icon
 						BoardModel.getInstance().getGrid().getButtonCell(
 								robotPosition[0],robotPosition[1]).setIcon(new PickedImage().getImage());
-						System.out.println("Robot has picked the source");
+						BoardModel.getInstance().getOutputPanel().toConsole("Robot has picked the source");
 					}else{
-						System.out.println("Robot did not pick up anything");
+						BoardModel.getInstance().getOutputPanel().toConsole("Robot did not pick up anything");
 					}
 				}else if(commands[i].equalsIgnoreCase("d")){
 					boolean dropItem = BoardModel.getInstance().dropSource();
 					
 					if(dropItem){
-						// TODO: Change image on icon
-						System.out.println("Robot has dropped source into destination");
+						BoardModel.getInstance().getOutputPanel().toConsole("Robot has dropped source into destination");
 						
 					}else{
-						System.out.println("Robot could not drop source");
+						BoardModel.getInstance().getOutputPanel().toConsole("Robot could not drop source");
 					}
 					
 				}else if(commands[i].length() == 2){
@@ -136,26 +117,22 @@ public class CommandListener implements ActionListener{
 									throw new Exception();
 							}
 							
-							System.out.println("current robot: "+robotPosition[0]+","+robotPosition[1]);
-							
+							BoardModel.getInstance().getOutputPanel().toConsole("current robot: "+robotPosition[0]+","+robotPosition[1]);		
 						}
 						
 					} catch (NumberFormatException e1) {
-						System.out.println("Invalid command " + commands[i]);
+						BoardModel.getInstance().getOutputPanel().toConsole("Invalid command " + commands[i]);
 					} catch (Exception e2){
-						System.out.println("Invalid command " + commands[i]);
+						BoardModel.getInstance().getOutputPanel().toConsole("Invalid command " + commands[i]);
 					}
 				}else{
-					System.out.println("Invalid command");
+					BoardModel.getInstance().getOutputPanel().toConsole("Invalid command");
 				}
-				printPositions();
-				
+				getPositions();
 				//reset robot, source, destination		
 		}	
 			// clear input text
 			BoardModel.getInstance().clearInputArea();
-			System.out.println("END");
-			
 			
 		}
 			
