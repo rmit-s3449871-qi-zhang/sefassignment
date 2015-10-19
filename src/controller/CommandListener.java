@@ -11,6 +11,12 @@ import view.imageitem.ClearImage;
 import view.imageitem.PickedImage;
 import view.imageitem.RobotImage;
 
+/**
+ * @author CoolQ
+ * The program is for command area button mouse click event
+ * The robot will execute command after click "run" button
+ *
+ */
 public class CommandListener implements ActionListener{
 
 	private JButton button;
